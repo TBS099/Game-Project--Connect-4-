@@ -88,7 +88,7 @@
 (define total-moves 0)
 
 ;WIN PATTERN CHECK START
-;Check pattern horizontally
+;Function to check pattern horizontally
 (define (horizontal-win vec i j)
   (cond
     [(and (number? (vector-ref (vector-ref vec i) j))
@@ -111,7 +111,7 @@
     )
   )
 
-;Check for pattern vertically
+;Function to check for pattern vertically
 (define (vertical-win vec i j)
   (cond
     [(and (number? (vector-ref (vector-ref vec i) j))
@@ -134,7 +134,7 @@
     )
   )
 
-;Check for pattern from bottom-left to top-right
+;Function to check for pattern from bottom-left to top-right
 (define (right-top-win vec i j)
   (cond
     [(and (number? (vector-ref (vector-ref vec i) j))
@@ -157,7 +157,7 @@
 )
 )
 
-;Check for pattern from top-left to bottom-right
+;Fucntion to check for pattern from top-left to bottom-right
 (define (left-top-win vec i j)
   (cond
     [(and (number? (vector-ref (vector-ref vec i) j))
@@ -180,3 +180,17 @@
 )
 )
 ;WIN PATTERN CHECK END
+
+;Function to check values in certain column and return the row of the last filled vector in the column
+(define (check-column vec col)
+  (define (check col-index counter)
+    (cond
+      ((< col-index 0) #f)
+      ((number? (vector-ref (vector-ref vec col-index) col))
+       counter)
+      (else (check (- col-index 1) (+ counter 1)))))
+  
+  (check (- (vector-length vec) 1) 0))
+
+;Creating a list to store button and vector pairs
+(define btn-vector-pairs '())
