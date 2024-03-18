@@ -87,7 +87,6 @@
 ;Variable to calculate total moves
 (define total-moves 0)
 
-;WIN PATTERN CHECK START
 ;Check pattern horizontally
 (define (horizontal-win vec i j)
   (cond
@@ -179,4 +178,3 @@
 [else #f]
 )
 )
-;WIN PATTERN CHECK END
