@@ -5,9 +5,9 @@
 ;Creating the start frame
 (define start-frame (new frame%
                          [label "CONNECT FOUR MENU"]
-                     [width 400]
-                     [height 200]
-                     ))
+                         [width 400]
+                         [height 200]
+                         ))
 
 ;Creating a vertical panel for the frame
 (define start-vert-panel (new vertical-panel%
@@ -20,10 +20,10 @@
 
 ;Creating a title for the start frame to display which game it is
 (define start-title (new message%
-                   [label "Connect 4"]
-                   [parent start-vert-panel]
-                   [font (make-object font% 25 'default)]
-                   ))
+                         [label "Connect 4"]
+                         [parent start-vert-panel]
+                         [font (make-object font% 25 'default)]
+                         ))
 
 ;Creating start button
 (define start-btn (new button%
@@ -141,21 +141,21 @@
           (number? (vector-ref (vector-ref vec (+ i 1)) (+ j 1)))
           (number? (vector-ref (vector-ref vec (+ i 2)) (+ j 2)))
           (number? (vector-ref (vector-ref vec (+ i 3)) (+ j 3))))
-          (cond
-            [(= (vector-ref (vector-ref vec i) j)
-                (vector-ref (vector-ref vec (+ i 1)) (+ j 1))
-                (vector-ref (vector-ref vec (+ i 2)) (+ j 2))
-                (vector-ref (vector-ref vec (+ i 3)) (+ j 3))
-                1)1]
-            [(= (vector-ref (vector-ref vec i) j)
-                (vector-ref (vector-ref vec (+ i 1)) (+ j 1))
-                (vector-ref (vector-ref vec (+ i 2)) (+ j 2))
-                (vector-ref (vector-ref vec (+ i 3)) (+ j 3))
-                0)0]
-            [else #f])]
-[else #f]
-)
-)
+     (cond
+       [(= (vector-ref (vector-ref vec i) j)
+           (vector-ref (vector-ref vec (+ i 1)) (+ j 1))
+           (vector-ref (vector-ref vec (+ i 2)) (+ j 2))
+           (vector-ref (vector-ref vec (+ i 3)) (+ j 3))
+           1)1]
+       [(= (vector-ref (vector-ref vec i) j)
+           (vector-ref (vector-ref vec (+ i 1)) (+ j 1))
+           (vector-ref (vector-ref vec (+ i 2)) (+ j 2))
+           (vector-ref (vector-ref vec (+ i 3)) (+ j 3))
+           0)0]
+       [else #f])]
+    [else #f]
+    )
+  )
 
 ;Fucntion to check for pattern from top-left to bottom-right
 (define (left-top-win vec i j)
@@ -164,21 +164,21 @@
           (number? (vector-ref (vector-ref vec (+ i 1)) (+ j 1)))
           (number? (vector-ref (vector-ref vec (+ i 2)) (+ j 2)))
           (number? (vector-ref (vector-ref vec (+ i 3)) (+ j 3))))
-          (cond
-            [(= (vector-ref (vector-ref vec i) j)
-                (vector-ref (vector-ref vec (- i 1)) (+ j 1))
-                (vector-ref (vector-ref vec (- i 2)) (+ j 2))
-                (vector-ref (vector-ref vec (- i 3)) (+ j 3))
-                1)1]
-            [(= (vector-ref (vector-ref vec i) j)
-                (vector-ref (vector-ref vec (- i 1)) (+ j 1))
-                (vector-ref (vector-ref vec (- i 2)) (+ j 2))
-                (vector-ref (vector-ref vec (- i 3)) (+ j 3))
-                0)0]
-            [else #f])]
-[else #f]
-)
-)
+     (cond
+       [(= (vector-ref (vector-ref vec i) j)
+           (vector-ref (vector-ref vec (- i 1)) (+ j 1))
+           (vector-ref (vector-ref vec (- i 2)) (+ j 2))
+           (vector-ref (vector-ref vec (- i 3)) (+ j 3))
+           1)1]
+       [(= (vector-ref (vector-ref vec i) j)
+           (vector-ref (vector-ref vec (- i 1)) (+ j 1))
+           (vector-ref (vector-ref vec (- i 2)) (+ j 2))
+           (vector-ref (vector-ref vec (- i 3)) (+ j 3))
+           0)0]
+       [else #f])]
+    [else #f]
+    )
+  )
 ;WIN PATTERN CHECK END
 
 ;Function to check values in certain column and return the row of the last filled vector in the column
