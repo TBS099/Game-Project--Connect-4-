@@ -57,6 +57,75 @@
                         [width 800]
                         [height 650]
                         ))
+
+;Creating a horizontal panel for buttons
+(define btn-panel (new horizontal-panel%
+                       [parent game-frame]
+                       [alignment '(center center)]
+                       ))
+
+;Creating a vertical panel in the game frame
+(define vert-game-panel (new vertical-panel%
+                            [parent game-frame]
+                            [alignment '(center center)]
+                            ))
+
+;Function to create button for column 0
+(define button0 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
+;Function to create button for column 1
+(define button1 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
+;Function to create button for column 2
+(define button2 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
+;Function to create button for column 3
+(define button3 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
+;Function to create button for column 4
+(define button4 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
+;Function to create button for column 5
+(define button5 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
+;Function to create button for column 6
+(define button6 (new button%
+                     [parent btn-panel]
+                     [label ""]
+                     [min-width 80]
+                     [min-height 60]
+                     ))
+
 ;GAME FRAME END
 
 
@@ -192,5 +261,5 @@
   
   (check (- (vector-length vec) 1) 0))
 
-;Creating a list to store button and vector pairs
-(define btn-vector-pairs '())
+;Starting the game
+(send start-frame show #t)
