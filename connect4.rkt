@@ -58,74 +58,47 @@
                         [height 650]
                         ))
 
-;Creating a horizontal panel for buttons
-(define btn-panel (new horizontal-panel%
-                       [parent game-frame]
-                       [alignment '(center center)]
-                       ))
-
 ;Creating a vertical panel in the game frame
 (define vert-game-panel (new vertical-panel%
                             [parent game-frame]
                             [alignment '(center center)]
                             ))
 
-;Function to create button for column 0
-(define button0 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
+;Creating a horizontal panel for buttons
+(define btn-panel5 (new horizontal-panel%
+                       [parent vert-game-panel]
+                       [alignment '(center center)]
+                       ))
 
-;Function to create button for column 1
-(define button1 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
+;Creating a horizontal panel for buttons
+(define btn-panel4 (new horizontal-panel%
+                       [parent vert-game-panel]
+                       [alignment '(center center)]
+                       ))
 
-;Function to create button for column 2
-(define button2 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
+;Creating a horizontal panel for buttons
+(define btn-panel3 (new horizontal-panel%
+                       [parent vert-game-panel]
+                       [alignment '(center center)]
+                       ))
 
-;Function to create button for column 3
-(define button3 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
+;Creating a horizontal panel for buttons
+(define btn-panel2 (new horizontal-panel%
+                       [parent vert-game-panel]
+                       [alignment '(center center)]
+                       ))
 
-;Function to create button for column 4
-(define button4 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
+;Creating a horizontal panel for buttons
+(define btn-panel1 (new horizontal-panel%
+                       [parent vert-game-panel]
+                       [alignment '(center center)]
+                       ))
 
-;Function to create button for column 5
-(define button5 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
-
-;Function to create button for column 6
-(define button6 (new button%
-                     [parent btn-panel]
-                     [label ""]
-                     [min-width 80]
-                     [min-height 60]
-                     ))
-
+;Creating a horizontal panel for buttons
+(define btn-panel0 (new horizontal-panel%
+                       [parent vert-game-panel]
+                       [alignment '(center center)]
+                       ))
 ;GAME FRAME END
 
 
@@ -149,12 +122,6 @@
       )
     )
   )
-
-;Creating vector for the game
-(define connect4-vector (create-2d-vector 6 7 #f))
-
-;Variable to calculate total moves
-(define total-moves 0)
 
 ;WIN PATTERN CHECK START
 ;Function to check pattern horizontally
@@ -250,6 +217,38 @@
   )
 ;WIN PATTERN CHECK END
 
+;List to store button name and button in
+(define buttons '())
+
+;Function to create buttons
+(define (create-btn parent-panel row col btn-name)
+  (define button
+    (new button%
+         [parent parent-panel]
+         [label ""]
+         [min-width 80]
+         [min-height 60]
+         [callback (λ (button event)
+                     (define coord (cons col row))
+                     (displayln coord))]))
+  (set! buttons (cons (cons btn-name button) buttons))
+  btn-name)
+
+;Function to make multiple buttons for each panel
+(define (create-multiple-btn parent-panel row cols)
+    (for([col (in-range cols)])
+      (define btn-name (format "btn-~a~a" row col))
+      (create-btn parent-panel col row btn-name))
+    )
+
+;Function to disable button by name. Format of button: btn-(row)(col)
+(define (disable-btn list name)
+  (for-each
+   (λ (pair)
+     (when (equal? (car pair) name)
+       (send (cdr pair) enable #f)))
+   list))
+
 ;Function to check values in certain column and return the row of the last filled vector in the column
 (define (check-column vec col)
   (define (check col-index counter)
@@ -260,6 +259,21 @@
       (else (check (- col-index 1) (+ counter 1)))))
   
   (check (- (vector-length vec) 1) 0))
+
+;INITIALIZATION
+;Creating vector for the game
+(define connect4-vector (create-2d-vector 6 7 #f))
+
+;Variable to calculate total moves
+(define total-moves 0)
+
+;Calling function to create buttons for each panel
+(create-multiple-btn btn-panel0 0 7)
+(create-multiple-btn btn-panel1 1 7)
+(create-multiple-btn btn-panel2 2 7)
+(create-multiple-btn btn-panel3 3 7)
+(create-multiple-btn btn-panel4 4 7)
+(create-multiple-btn btn-panel5 5 7)
 
 ;Starting the game
 (send start-frame show #t)
