@@ -62,6 +62,13 @@
                   [font (make-object font% 25 'default)]
                   ))
 
+;Creating a text message to direct users on the win conditions of the game
+(define ob-text (new message%
+                  [label "Connect 4 to win!!!"]
+                  [parent vert-game-panel]
+                  [font (make-object font% 15 'default)]
+                  ))
+
 ;Creating a text message to direct users on how to play the game
 (define help-text (new message%
                   [label "Press on any button to make the X or O fall in that column"]
