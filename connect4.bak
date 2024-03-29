@@ -62,6 +62,13 @@
                   [font (make-object font% 25 'default)]
                   ))
 
+;Creating a text message to direct users on how to play the game
+(define help-text (new message%
+                  [label "Press on any button to make the X or O fall in that column"]
+                  [parent vert-game-panel]
+                  [font (make-object font% 15 'default)]
+                  ))
+
 ;Creating a horizontal panel for buttons
 (define btn-panel5 (new horizontal-panel%
                         [parent game-frame]
