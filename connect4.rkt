@@ -132,6 +132,7 @@
          [label ""]
          [min-width 80]
          [min-height 60]
+         [font (make-object font% 15 'default)]
          [callback (λ (button event)
                      (define coord col)
                      (disable-btn buttons coord)
